@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1689556575,
-        "narHash": "sha256-ahqFMzi4rh0Z82HA6HselXJ4vkKRha2KqGx5XboYGcU=",
+        "lastModified": 1689641553,
+        "narHash": "sha256-kAesDUOE4RzqLulMUN91o9tq4B5FrDscAKai+C+gK6c=",
         "owner": "harris-chris",
         "repo": "get-workspace-name",
-        "rev": "351dd07c362eac090ab4fd189125ab20859f0ebd",
+        "rev": "793b27a76344a90f4baaa7bc355993a616f9c8aa",
         "type": "github"
       },
       "original": {

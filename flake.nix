@@ -6,10 +6,12 @@
   outputs = { self, nixpkgs, get-workspace-name }:
     let
       system = "x86_64-linux";
+
       pkgs = import nixpkgs {
         inherit system;
         overlays = [ get-workspace-name.overlays.default ];
       };
+
       script = ''
         #! ${pkgs.bash}/bin/bash
         desktop="$(${pkgs.getworkspacename}/bin/getworkspacename)"
@@ -29,14 +31,17 @@
             exec $kakoune -s "$desktop" "$@"
         fi
       '';
-      getPackage = pkgs: pkgs.writeShellApplication {
-          name = "kk";
-          text = script;
-        };
+
+      getPackages = pkgs:
+        let
+          kakoune-workspace = pkgs.writeShellApplication {
+            name = "kk";
+            text = script;
+          };
+        in
+          { inherit kakoune-workspace; };
     in {
-      packages.${system}.default = getPackage pkgs;
-      overlays.default = final: prev: {
-        kakoune-workspace = getPackage final;
-      };
+      packages.${system} = getPackages pkgs;
+      overlays.default = final: prev: getPackages final;
     };
 }
